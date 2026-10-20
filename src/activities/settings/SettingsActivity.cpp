@@ -33,6 +33,7 @@
 #include "StatusBarSettingsActivity.h"
 #include "TextSettingsActivity.h"
 #include "activities/network/WifiSelectionActivity.h"
+#include "activities/util/KeyboardEntryActivity.h"
 #include "activities/util/IntervalSelectionActivity.h"
 #include "components/UITheme.h"
 #include "components/UIThemeTokens.h"
@@ -95,6 +96,7 @@ void SettingsActivity::rebuildSettingsLists() {
     controlsSettings.insert(controlsSettings.begin(),
                             SettingInfo::Action(StrId::STR_HOME_BUTTON, SettingAction::HomeButton));
   }
+  displaySettings.push_back(SettingInfo::Action(StrId::STR_CALENDAR_SERVER_URL, SettingAction::CalendarUrl));
   systemSettings.push_back(SettingInfo::Action(StrId::STR_WIFI_NETWORKS, SettingAction::Network));
   // Clock configuration only exists where the RTC probe found hardware; on
   // clockless boards there is nothing to set.
@@ -394,6 +396,21 @@ void SettingsActivity::toggleCurrentSetting() {
         });
         break;
       }
+      case SettingAction::CalendarUrl:
+        startActivityForResult(
+            std::make_unique<KeyboardEntryActivity>(renderer, mappedInput, tr(STR_CALENDAR_SERVER_URL),
+                                                    std::string(SETTINGS.calendarUrl),
+                                                    sizeof(SETTINGS.calendarUrl) - 1, InputType::Url),
+            [this](const ActivityResult& result) {
+              if (!result.isCancelled) {
+                const auto& kb = std::get<KeyboardResult>(result.data);
+                strncpy(SETTINGS.calendarUrl, kb.text.c_str(), sizeof(SETTINGS.calendarUrl) - 1);
+                SETTINGS.calendarUrl[sizeof(SETTINGS.calendarUrl) - 1] = '\0';
+                SETTINGS.saveToFile();
+              }
+              requestUpdate();
+            });
+        break;
       case SettingAction::ClearCache:
         startActivityForResult(std::make_unique<ClearCacheActivity>(renderer, mappedInput), resultHandler);
         break;

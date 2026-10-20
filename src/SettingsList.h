@@ -218,6 +218,7 @@ inline std::vector<SettingInfo> getSettingsList(const SdCardFontRegistry* regist
     sleepScreenValues[CrossPointSettings::BLANK] = StrId::STR_NONE_OPT;
     sleepScreenValues[CrossPointSettings::QUICK_RESUME] = StrId::STR_QUICK_RESUME;
     sleepScreenValues[CrossPointSettings::TRANSPARENT_CUSTOM] = StrId::STR_TRANSPARENT;
+    sleepScreenValues[CrossPointSettings::CALENDAR] = StrId::STR_CALENDAR;
 
     std::vector<StrId> statusBarClockValues(CrossPointSettings::STATUS_BAR_CLOCK_MODE_COUNT);
     statusBarClockValues[CrossPointSettings::STATUS_BAR_CLOCK_HIDE] = StrId::STR_HIDE;
@@ -379,6 +380,11 @@ inline std::vector<SettingInfo> getSettingsList(const SdCardFontRegistry* regist
                             "removeReadBooksFromRecents", StrId::STR_CAT_SYSTEM),
         SettingInfo::Toggle(StrId::STR_MOVE_FINISHED_TO_READ, &CrossPointSettings::moveFinishedToReadFolder,
                             "moveFinishedToReadFolder", StrId::STR_CAT_SYSTEM),
+
+        // Calendar server URL: persisted + web-exposed; edited on-device through the
+        // "Calendar Server URL" action in the Display tab.
+        SettingInfo::String(StrId::STR_CALENDAR_SERVER_URL, &SETTINGS.calendarUrl[0], sizeof(SETTINGS.calendarUrl),
+                            "calendarUrl"),
 
         // OPDS download folder: persisted + web-exposed, but category-less so it
         // is hidden from the on-device Settings screen (edited via OPDS UI).

@@ -29,6 +29,7 @@
 #include "fontIds.h"
 #include "images/Logo120.h"
 #include "images/MoonIcon.h"
+#include "network/CalendarFetcher.h"
 
 namespace {
 
@@ -554,6 +555,8 @@ void SleepActivity::onEnter() {
       return renderBlankSleepScreen();
     case (CrossPointSettings::SLEEP_SCREEN_MODE::CUSTOM):
       return renderCustomSleepScreen();
+    case (CrossPointSettings::SLEEP_SCREEN_MODE::CALENDAR):
+      return renderCalendarSleepScreen();
     case (CrossPointSettings::SLEEP_SCREEN_MODE::COVER):
       return renderCoverSleepScreen();
     case (CrossPointSettings::SLEEP_SCREEN_MODE::COVER_CUSTOM):
@@ -565,6 +568,31 @@ void SleepActivity::onEnter() {
     default:
       return renderDefaultSleepScreen();
   }
+}
+
+// Fetches a fresh calendar image from the configured server (best effort), then
+// shows the newest one on disk. Without a stored image it falls back to the default screen.
+void SleepActivity::renderCalendarSleepScreen() const {
+  if (!calendar::refresh()) {
+    LOG_ERR("SLP", "Calendar refresh failed, using the last stored image");
+  }
+
+  HalFile file;
+  if (Storage.openFileForRead("SLP", calendar::IMAGE_PATH, file)) {
+    Bitmap bitmap(file, true,
+                  renderer.grayscaleCapabilities(sleepGrayscaleMode(renderer)).supported() &&
+                      display.getController() == HalDisplay::Controller::SSD1677 &&
+                      SETTINGS.sleepScreenCoverFilter == CrossPointSettings::SLEEP_SCREEN_COVER_FILTER::NO_FILTER);
+    if (bitmap.parseHeaders() == BmpReaderError::Ok) {
+      LOG_DBG("SLP", "Loading: %s", calendar::IMAGE_PATH);
+      renderBitmapSleepScreen(bitmap);
+      file.close();
+      return;
+    }
+    file.close();
+  }
+
+  renderDefaultSleepScreen();
 }
 
 void SleepActivity::renderCustomSleepScreen() const {

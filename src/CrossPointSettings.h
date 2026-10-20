@@ -25,6 +25,7 @@ class CrossPointSettings : public PersistableStore<CrossPointSettings> {
     BLANK = 5,
     QUICK_RESUME = 6,
     TRANSPARENT_CUSTOM = 7,
+    CALENDAR = 8,
     SLEEP_SCREEN_MODE_COUNT
   };
   enum SLEEP_SCREEN_COVER_MODE { FIT = 0, CROP = 1, SLEEP_SCREEN_COVER_MODE_COUNT };
@@ -306,6 +307,9 @@ class CrossPointSettings : public PersistableStore<CrossPointSettings> {
   // OPDS download destination folder ("" = SD root). Global; edited from the
   // OPDS server list. Persisted via a category-less SettingInfo::String in
   // SettingsList.h, so it stays out of the on-device Settings screen.
+  // Calendar sleep screen: URL of the server that renders the day view as a BMP
+  // (e.g. a Cloudflare Worker). Fetched just before the device goes to sleep.
+  char calendarUrl[192] = "";
   char opdsDownloadFolder[64] = "";
   // On-disk filename format for OPDS downloads (0=Author-Title default, 1=Title-Author,
   // 2=Title). See OpdsFilenameFormat. Persisted via a category-less SettingInfo::Enum,
