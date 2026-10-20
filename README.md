@@ -1,5 +1,10 @@
 # CrossPoint Reader
 
+> **Unofficial fork** of CrossPoint Reader v1.6.5 that adds a calendar sleep screen for the
+> Xteink X4 Pro. Not affiliated with the CrossPoint Reader organization or Xteink. See
+> [FORK_NOTICE.md](FORK_NOTICE.md) for changes, sources and licenses. The original project is at
+> <https://github.com/crosspoint-reader/crosspoint-reader>.
+
 [![Fund contributors](https://img.shields.io/badge/%F0%9F%91%91_Fund_contributors-royalty.dev-BB953A?style=for-the-badge&labelColor=1a1a1a)](https://app.royalty.dev/crosspoint-reader/crosspoint-reader)
 
 CrossPoint is open-source e-reader firmware - community-built, fully hackable, free forever. It's maintained by a growing community of developers and readers who believe your device should do what you want - not what a manufacturer decided for you.
