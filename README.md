@@ -20,6 +20,11 @@ Termine von heute aus Google Kalender und die Aufgaben von heute aus Todoist.
 3. Wenn das Gerät einschläft, verbindet es sich mit deinem gespeicherten WLAN, lädt das Bild von der
    URL und zeigt es als Ruhebildschirm an. Schlägt das fehl, bleibt das zuletzt geladene Bild stehen.
 
+<p align="center">
+  <img src="docs/lowbattery-screens.png" alt="Die 16 Warnbilder bei niedrigem Akku" width="640"><br>
+  <em>Die 16 Warnbilder zur Auswahl (unter jedem Bild zeigt das Gerät „Akku schwach“ und den Ladestand)</em>
+</p>
+
 ## Installation
 1. Lade die `firmware.bin` aus den [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)
    herunter und kopiere sie auf die SD-Karte (Hauptverzeichnis).
@@ -40,6 +45,9 @@ Die Einrichtung des Workers (Google-Dienstkonto, Todoist-Token, Orte) steht in d
 - Liegt der Akku unter **10 %**, lädt das Gerät nichts herunter. Stattdessen erscheint ein Warnbild
   „Akku schwach“ mit der Ladestandsanzeige. Nach dem Laden wird der Kalender beim nächsten
   Einschlafen wieder aktualisiert.
+- Das **Warnbild bei niedrigem Akku** wählst du unter *Einstellungen → Display → Warnbild bei leerem Akku*:
+  eine Galerie mit dem schlichten Akku-Symbol und **16 Zeichnungen** (10 Cartoons, 3 Comic-Skizzen, 3 Steampunk-Motive).
+  Mit Links/Rechts blätterst du, OK übernimmt das gezeigte Bild.
 - Das Bild muss ein BMP mit 480x800 Pixeln sein. Der Worker liefert genau das.
 - Die Adresse deines Workers ist öffentlich erreichbar. Wer sie kennt, sieht deine Termine und
   Aufgaben. Gib sie nicht weiter.

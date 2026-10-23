@@ -22,6 +22,7 @@
 #include "HomeButtonSettingsActivity.h"
 #include "KOReaderSettingsActivity.h"
 #include "KeyboardLayoutsActivity.h"
+#include "LowBatteryScreenActivity.h"
 #include "LanguageSelectActivity.h"
 #include "MappedInputManager.h"
 #include "OpdsServerListActivity.h"
@@ -97,6 +98,7 @@ void SettingsActivity::rebuildSettingsLists() {
                             SettingInfo::Action(StrId::STR_HOME_BUTTON, SettingAction::HomeButton));
   }
   displaySettings.push_back(SettingInfo::Action(StrId::STR_CALENDAR_SERVER_URL, SettingAction::CalendarUrl));
+  displaySettings.push_back(SettingInfo::Action(StrId::STR_LOW_BATTERY_SCREEN, SettingAction::LowBatteryScreen));
   systemSettings.push_back(SettingInfo::Action(StrId::STR_WIFI_NETWORKS, SettingAction::Network));
   // Clock configuration only exists where the RTC probe found hardware; on
   // clockless boards there is nothing to set.
@@ -410,6 +412,9 @@ void SettingsActivity::toggleCurrentSetting() {
               }
               requestUpdate();
             });
+        break;
+      case SettingAction::LowBatteryScreen:
+        startActivityForResult(std::make_unique<LowBatteryScreenActivity>(renderer, mappedInput), resultHandler);
         break;
       case SettingAction::ClearCache:
         startActivityForResult(std::make_unique<ClearCacheActivity>(renderer, mappedInput), resultHandler);

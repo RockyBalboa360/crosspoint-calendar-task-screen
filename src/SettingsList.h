@@ -386,6 +386,11 @@ inline std::vector<SettingInfo> getSettingsList(const SdCardFontRegistry* regist
         SettingInfo::String(StrId::STR_CALENDAR_SERVER_URL, &SETTINGS.calendarUrl[0], sizeof(SETTINGS.calendarUrl),
                             "calendarUrl"),
 
+        // Low-battery screen style: persisted + web-exposed, chosen on-device through the gallery action in the
+        // Display tab (no category, so no generic row).
+        SettingInfo::Value(StrId::STR_LOW_BATTERY_SCREEN, &CrossPointSettings::lowBatteryScreen, {0, 16, 1},
+                           "lowBatteryScreen"),
+
         // OPDS download folder: persisted + web-exposed, but category-less so it
         // is hidden from the on-device Settings screen (edited via OPDS UI).
         SettingInfo::String(StrId::STR_OPDS_DOWNLOAD_FOLDER, &SETTINGS.opdsDownloadFolder[0],

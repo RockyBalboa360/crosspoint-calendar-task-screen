@@ -310,6 +310,8 @@ class CrossPointSettings : public PersistableStore<CrossPointSettings> {
   // Calendar sleep screen: URL of the server that renders the day view as a BMP
   // (e.g. a Cloudflare Worker). Fetched just before the device goes to sleep.
   char calendarUrl[192] = "";
+  // Low-battery screen style: 0 = plain battery icon, 1..N = pictures (see util/LowBatteryScreen.h).
+  uint8_t lowBatteryScreen = 0;
   char opdsDownloadFolder[64] = "";
   // On-disk filename format for OPDS downloads (0=Author-Title default, 1=Title-Author,
   // 2=Title). See OpdsFilenameFormat. Persisted via a category-less SettingInfo::Enum,

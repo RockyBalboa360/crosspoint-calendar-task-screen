@@ -31,6 +31,7 @@
 #include "images/Logo120.h"
 #include "images/MoonIcon.h"
 #include "network/CalendarFetcher.h"
+#include "util/LowBatteryScreen.h"
 
 namespace {
 
@@ -575,37 +576,10 @@ void SleepActivity::onEnter() {
 // 0 means the fuel gauge has not produced a reading yet, so it never triggers the warning.
 constexpr uint16_t CALENDAR_MIN_BATTERY_PERCENT = 10;
 
-// Fixed warning screen: battery outline with a sliver of fill, "battery low", the charge level and a hint.
+// Fixed warning screen in the style chosen under Settings > Display (plain battery icon or a picture).
 void SleepActivity::renderLowBatterySleepScreen(const uint16_t percent) const {
-  const int pageWidth = renderer.getScreenWidth();
-  const int pageHeight = renderer.getScreenHeight();
-  constexpr int BODY_W = 240;
-  constexpr int BODY_H = 120;
-  constexpr int NUB_W = 20;
-  constexpr int NUB_H = 50;
-  constexpr int BORDER = 8;
-  const int x = (pageWidth - BODY_W - NUB_W) / 2;
-  const int y = pageHeight / 2 - 220;
-
   renderer.clearScreen();
-  renderer.drawRect(x, y, BODY_W, BODY_H, BORDER, true);
-  renderer.fillRect(x + BODY_W, y + (BODY_H - NUB_H) / 2, NUB_W, NUB_H, true);
-  const int innerW = BODY_W - 2 * (BORDER + 4);
-  const int fillW = std::max(8, innerW * std::min<int>(percent, 100) / 100);
-  renderer.fillRect(x + BORDER + 4, y + BORDER + 4, fillW, BODY_H - 2 * (BORDER + 4), true);
-
-  int textY = y + BODY_H + 50;
-  renderer.drawCenteredText(UI_12_FONT_ID, textY, tr(STR_CALENDAR_LOW_BATTERY), true, EpdFontFamily::BOLD);
-  textY += renderer.getLineHeight(UI_12_FONT_ID) + 10;
-  char level[8];
-  snprintf(level, sizeof(level), "%u%%", static_cast<unsigned>(percent));
-  renderer.drawCenteredText(UI_12_FONT_ID, textY, level, true, EpdFontFamily::BOLD);
-  textY += renderer.getLineHeight(UI_12_FONT_ID) + 30;
-  for (const auto& line : renderer.wrappedText(UI_10_FONT_ID, tr(STR_CALENDAR_CHARGE_HINT), pageWidth - 80, 4)) {
-    renderer.drawCenteredText(UI_10_FONT_ID, textY, line.c_str());
-    textY += renderer.getLineHeight(UI_10_FONT_ID) + 4;
-  }
-
+  lowbatteryscreen::draw(renderer, SETTINGS.lowBatteryScreen, percent);
   renderer.displayBuffer(HalDisplay::HALF_REFRESH);
 }
 

@@ -30,6 +30,7 @@ enum class SettingAction {
   HomeButton,
   About,
   CalendarUrl,
+  LowBatteryScreen,
 };
 
 struct SettingInfo {
