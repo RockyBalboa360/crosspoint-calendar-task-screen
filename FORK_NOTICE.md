@@ -14,12 +14,13 @@ to `/.crosspoint/calendar.bmp` and shows it as the sleep screen. If the download
 stored image is shown.
 
 - `src/network/CalendarFetcher.{h,cpp}` (new): WiFi connect, download, BMP check
-- `src/activities/boot_sleep/SleepActivity.{h,cpp}`: the Calendar sleep screen
+- `src/activities/boot_sleep/SleepActivity.{h,cpp}`: the Calendar sleep screen, and a fixed
+  warning screen shown instead of the download when the battery is below 10 %
 - `src/activities/settings/SettingsActivity.{h,cpp}`: "Calendar Server URL" entry (Display tab)
 - `src/CrossPointSettings.h`, `src/SettingsList.h`: setting and enum value, also exposed in the
   web settings
 - `lib/I18n/translations/{english,german}.yaml`: new strings
-- `platformio.ini`: version string `1.6.5-calendar`
+- `platformio.ini`: version string `1.6.5-calendar2`
 
 A matching image server (Cloudflare Worker) is available at
 <https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen>.

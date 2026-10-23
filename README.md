@@ -37,6 +37,9 @@ Die Einrichtung des Workers (Google-Dienstkonto, Todoist-Token, Orte) steht in d
 - Das Bild wird **beim Einschlafen** geladen, von Hand oder nach der eingestellten Zeit ohne
   Bedienung. Danach bleibt es stehen, bis du das Gerät aufweckst und erneut einschlafen lässt. Ein
   zeitgesteuertes Aufwachen gibt es nicht.
+- Liegt der Akku unter **10 %**, lädt das Gerät nichts herunter. Stattdessen erscheint ein Warnbild
+  „Akku schwach“ mit der Ladestandsanzeige. Nach dem Laden wird der Kalender beim nächsten
+  Einschlafen wieder aktualisiert.
 - Das Bild muss ein BMP mit 480x800 Pixeln sein. Der Worker liefert genau das.
 - Die Adresse deines Workers ist öffentlich erreichbar. Wer sie kennt, sieht deine Termine und
   Aufgaben. Gib sie nicht weiter.
