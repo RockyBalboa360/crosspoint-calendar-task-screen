@@ -253,54 +253,6 @@ def rocket(c: Canvas):
     c.text((300, 40), "no fuel!", 34, fill=WHITE)
 
 
-@design("Arcade game over", "Arcade", "pop")
-def arcade(c: Canvas):
-    from PIL import Image, ImageDraw, ImageFont
-
-    def px(x, y, text, k, white=True):
-        font = ImageFont.load_default()
-        tmp = Image.new("L", (int(font.getlength(text)) + 2, 14), 0)
-        ImageDraw.Draw(tmp).text((1, 0), text, font=font, fill=255)
-        big = tmp.resize((tmp.width * k * 2, tmp.height * k * 2), Image.NEAREST)
-        c.A.paste(255 if white else 0, (int(x * 2), int(y * 2)), big)
-        c.T.paste(255, (int(x * 2), int(y * 2)), big)
-        return tmp.width * k
-
-    def block(x, y, k, rows, white=True):
-        for j, row in enumerate(rows):
-            for i, ch in enumerate(row):
-                if ch == "#":
-                    c.rect(x + i * k, y + j * k, x + (i + 1) * k, y + (j + 1) * k, WHITE if white else BLACK)
-
-    c.rect(0, 0, W, 640, BLACK)
-    c.rect(12, 12, W - 12, 628, WHITE)
-    c.rect(22, 22, W - 22, 618, BLACK)
-    px(44, 44, "PLAYER 1", 4)
-    px(280, 44, "LIVES", 4)
-    heart = ["..##..##..", ".########.", "##########", "##########", ".########.", "..######..", "...####...", "....##...."]
-    outline = ["..##..##..", ".##.##.##.", "##..###..#", "#........#", ".#......#.", "..#....#..", "...#..#...", "....##...."]
-    block(280, 84, 6, heart)
-    block(350, 84, 6, outline)
-    block(420, 84, 6, outline)
-    # big pixel battery
-    k = 12
-    x0, y0 = 54, 190
-    c.rect(x0, y0, x0 + 31 * k, y0 + 11 * k, WHITE)
-    c.rect(x0 + 2 * k, y0 + 2 * k, x0 + 29 * k, y0 + 9 * k, BLACK)
-    c.rect(x0 + 31 * k, y0 + 3 * k, x0 + 33 * k, y0 + 8 * k, WHITE)
-    c.rect(x0 + 3 * k, y0 + 3 * k, x0 + 5 * k, y0 + 8 * k, WHITE)
-    # warning sign
-    c.poly([(240, 340), (170, 450), (310, 450)], WHITE)
-    c.poly([(240, 364), (192, 438), (288, 438)], BLACK)
-    c.rect(234, 382, 246, 418, WHITE)
-    c.rect(234, 426, 246, 436, WHITE)
-    for (sx, sy) in [(60, 330), (410, 345), (70, 450), (400, 440), (430, 250), (46, 262)]:
-        block(sx, sy, 6, [".#.", "###", ".#."])
-    px(62, 490, "INSERT CHARGER", 4)
-    px(120, 548, "CONTINUE?", 4)
-    c.rect(22, 596, W - 22, 618, WHITE)
-
-
 @design("Last candle", "Letzte Kerze", "pop")
 def candle(c: Canvas):
     c.rect(0, 0, W, 640, tone(0.62))

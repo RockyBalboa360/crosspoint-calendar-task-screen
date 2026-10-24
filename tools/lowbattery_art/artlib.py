@@ -157,6 +157,17 @@ class Canvas:
         inked = Image.composite(lines, Image.new("L", lines.size, 0), mask)
         self.A.paste(0, mask=inked)
 
+    def lines_in(self, pts, polylines, w=2.0, color=0):
+        """Draw polylines clipped to a polygon (ink on the ink layer)."""
+        mask = Image.new("L", (W * S, H * S), 0)
+        ImageDraw.Draw(mask).polygon([tuple(p) for p in self._s(pts)], fill=255)
+        layer = Image.new("L", (W * S, H * S), 0)
+        dl = ImageDraw.Draw(layer)
+        for pl in polylines:
+            dl.line([tuple(p) for p in self._s(pl)], fill=255, width=max(1, int(w * S)), joint="curve")
+        inked = Image.composite(layer, Image.new("L", layer.size, 0), mask)
+        self.A.paste(color, mask=inked)
+
     def dots(self, pts, gap=6, r=1.3):
         """Halftone dots clipped to a polygon."""
         mask = Image.new("L", (W * S, H * S), 0)

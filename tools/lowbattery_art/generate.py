@@ -7,8 +7,8 @@ import sys
 import zlib
 from pathlib import Path
 
-import designs_pop  # noqa: F401,I001  (each module registers its pictures; the order sets the numbering)
-import designs_comic  # noqa: F401,I001
+import designs_future  # noqa: F401,I001  (each module registers its pictures; the order sets the numbering)
+import designs_pop  # noqa: F401,I001
 import designs_steam  # noqa: F401,I001
 from artlib import H, W, Canvas
 from registry import DESIGNS
