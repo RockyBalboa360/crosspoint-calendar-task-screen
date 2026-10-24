@@ -47,7 +47,7 @@ Die Einrichtung des Workers (Google-Dienstkonto, Todoist-Token, Orte) steht in d
   Einschlafen wieder aktualisiert.
 - Das **Warnbild bei niedrigem Akku** wählst du unter *Einstellungen → Display → Warnbild bei leerem Akku*:
   eine Galerie mit dem schlichten Akku-Symbol und **16 Zeichnungen** (ein klassischer Akku, 3 futuristische Schaltkreis-Motive, 9 Cartoons und 3 Steampunk-Motive).
-  Mit Links/Rechts blätterst du, OK übernimmt das gezeigte Bild.
+  Mit Wischen oder den Seitentasten blätterst du, die Tasten „Wählen“ und „Abbrechen“ am unteren Rand (per Berührung) übernehmen das gezeigte Bild oder verlassen die Galerie.
 - Das Bild muss ein BMP mit 480x800 Pixeln sein. Der Worker liefert genau das.
 - Die Adresse deines Workers ist öffentlich erreichbar. Wer sie kennt, sieht deine Termine und
   Aufgaben. Gib sie nicht weiter.

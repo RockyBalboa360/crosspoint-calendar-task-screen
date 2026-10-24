@@ -87,7 +87,7 @@ namespace lowbatteryscreen {
 
 uint8_t styleCount() { return lowbatteryart::COUNT + 1; }
 
-void draw(const GfxRenderer& renderer, const uint8_t style, const uint16_t percent) {
+void draw(const GfxRenderer& renderer, const uint8_t style, const uint16_t percent, const int reserveBottom) {
   const int pageWidth = renderer.getScreenWidth();
   const int pageHeight = renderer.getScreenHeight();
   const bool pictureFits = pageWidth >= MIN_SCREEN_WIDTH && pageHeight >= MIN_SCREEN_HEIGHT;
@@ -103,9 +103,11 @@ void draw(const GfxRenderer& renderer, const uint8_t style, const uint16_t perce
   int y = lowbatteryart::HEIGHT + 16;
   renderer.drawCenteredText(UI_12_FONT_ID, y, title, true, EpdFontFamily::BOLD);
   y += renderer.getLineHeight(UI_12_FONT_ID) + 10;
-  for (const auto& line : renderer.wrappedText(UI_10_FONT_ID, tr(STR_CALENDAR_CHARGE_HINT), pageWidth - 60, 3)) {
+  const int hintLineHeight = renderer.getLineHeight(UI_10_FONT_ID) + 2;
+  const int hintLines = std::clamp((pageHeight - reserveBottom - y) / hintLineHeight, 1, 3);
+  for (const auto& line : renderer.wrappedText(UI_10_FONT_ID, tr(STR_CALENDAR_CHARGE_HINT), pageWidth - 60, hintLines)) {
     renderer.drawCenteredText(UI_10_FONT_ID, y, line.c_str());
-    y += renderer.getLineHeight(UI_10_FONT_ID) + 2;
+    y += hintLineHeight;
   }
 }
 

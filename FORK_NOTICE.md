@@ -24,7 +24,7 @@ stored image is shown.
 - `src/CrossPointSettings.h`, `src/SettingsList.h`: setting and enum value, also exposed in the
   web settings
 - `lib/I18n/translations/{english,german}.yaml`: new strings
-- `platformio.ini`: version string `1.6.5-calendar4`
+- `platformio.ini`: version string `1.6.5-calendar5`
 
 A matching image server (Cloudflare Worker) is available at
 <https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen>.
