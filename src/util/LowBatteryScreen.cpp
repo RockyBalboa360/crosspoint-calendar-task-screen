@@ -104,7 +104,8 @@ void draw(const GfxRenderer& renderer, const uint8_t style, const uint16_t perce
   renderer.drawCenteredText(UI_12_FONT_ID, y, title, true, EpdFontFamily::BOLD);
   y += renderer.getLineHeight(UI_12_FONT_ID) + 10;
   const int hintLineHeight = renderer.getLineHeight(UI_10_FONT_ID) + 2;
-  const int hintLines = std::clamp((pageHeight - reserveBottom - y) / hintLineHeight, 1, 3);
+  const int hintLines = std::clamp((pageHeight - reserveBottom - y) / hintLineHeight, 0, 3);
+  if (hintLines == 0) return;
   for (const auto& line : renderer.wrappedText(UI_10_FONT_ID, tr(STR_CALENDAR_CHARGE_HINT), pageWidth - 60, hintLines)) {
     renderer.drawCenteredText(UI_10_FONT_ID, y, line.c_str());
     y += hintLineHeight;

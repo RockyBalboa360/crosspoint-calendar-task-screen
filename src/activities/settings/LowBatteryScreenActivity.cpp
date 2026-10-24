@@ -14,7 +14,7 @@
 namespace {
 // Charge level shown in the preview.
 constexpr uint16_t PREVIEW_PERCENT = 7;
-constexpr int BUTTON_BAND_HEIGHT = 92;
+constexpr int BUTTON_BAND_HEIGHT = 120;
 constexpr int BUTTON_HEIGHT = 48;
 constexpr int BUTTON_MARGIN = 20;
 constexpr int BUTTON_GAP = 16;
