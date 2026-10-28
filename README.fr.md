@@ -16,6 +16,7 @@ jour de Google Agenda et les tâches du jour de Todoist.
 
 **Deux parties qui vont ensemble :**
 - 🧩 **Firmware** (ce dépôt) : [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **dernière version : [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases/latest)**
+- 🔌 **Alternative sans firmware personnalisé :** [plugin SD pour le CrossPoint 2.0 officiel](https://github.com/RockyBalboa360/CrossPoint-SDPlugin-weather-calendar-task-screen)
 - ☁️ **Serveur d'image** (Cloudflare Worker) : [worker-for-crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen)
 
 ## Fonctionnement

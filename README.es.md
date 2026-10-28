@@ -16,6 +16,7 @@ Calendar y las tareas de hoy de Todoist.
 
 **Dos partes que van juntas:**
 - 🧩 **Firmware** (este repositorio): [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **última versión: [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases/latest)**
+- 🔌 **Alternativa sin firmware propio:** [plugin SD para el CrossPoint 2.0 oficial](https://github.com/RockyBalboa360/CrossPoint-SDPlugin-weather-calendar-task-screen)
 - ☁️ **Servidor de imagen** (Cloudflare Worker): [worker-for-crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen)
 
 ## Cómo funciona

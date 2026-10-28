@@ -16,6 +16,7 @@ Google Calendar and today's tasks from Todoist.
 
 **Two parts that belong together:**
 - 🧩 **Firmware** (this repository): [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **latest release: [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases/latest)**
+- 🔌 **Alternative without custom firmware:** [SD plugin for the official CrossPoint 2.0](https://github.com/RockyBalboa360/CrossPoint-SDPlugin-weather-calendar-task-screen)
 - ☁️ **Image server** (Cloudflare Worker): [worker-for-crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen)
 
 ## How it works
