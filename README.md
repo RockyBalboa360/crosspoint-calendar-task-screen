@@ -48,6 +48,11 @@ Die Einrichtung des Workers (Google-Dienstkonto, Todoist-Token, Orte) steht in d
 - Das **Warnbild bei niedrigem Akku** wählst du unter *Einstellungen → Display → Warnbild bei leerem Akku*:
   eine Galerie mit dem schlichten Akku-Symbol und **16 Zeichnungen** (ein klassischer Akku, 3 futuristische Schaltkreis-Motive, 9 Cartoons und 3 Steampunk-Motive).
   Mit Wischen oder den Seitentasten blätterst du, die Tasten „Wählen“ und „Abbrechen“ am unteren Rand (per Berührung) übernehmen das gezeigte Bild oder verlassen die Galerie.
+- **Platz für Termine und Aufgaben** (*Einstellungen → Display → Kalender-Priorität* und *Feste Anzahl*): *Alle Termine*
+  zeigt alle heutigen Termine, die Aufgaben bekommen den Rest. *Feste Terminzahl* zeigt genau die eingestellte Anzahl
+  Termine und gibt den Rest den Aufgaben, *Feste Aufgabenzahl* macht es umgekehrt, *Alle Aufgaben* bevorzugt die
+  Aufgaben. Die Firmware hängt die Wahl als `?priority=…&count=…` an die Server-URL, der Worker wertet sie aus
+  (neuer Worker erforderlich, siehe dessen README).
 - Das Bild muss ein BMP mit 480x800 Pixeln sein. Der Worker liefert genau das.
 - Die Adresse deines Workers ist öffentlich erreichbar. Wer sie kennt, sieht deine Termine und
   Aufgaben. Gib sie nicht weiter.

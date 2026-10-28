@@ -310,6 +310,11 @@ class CrossPointSettings : public PersistableStore<CrossPointSettings> {
   // Calendar sleep screen: URL of the server that renders the day view as a BMP
   // (e.g. a Cloudflare Worker). Fetched just before the device goes to sleep.
   char calendarUrl[192] = "";
+  // Calendar sleep screen layout, sent to the server as ?priority=...&count=...:
+  // 0 = all events first, 1 = fixed number of events (rest tasks), 2 = fixed number of tasks (rest events),
+  // 3 = all tasks first.
+  uint8_t calendarPriority = 1;
+  uint8_t calendarCount = 3;
   // Low-battery screen style: 0 = plain battery icon, 1..N = pictures (see util/LowBatteryScreen.h).
   uint8_t lowBatteryScreen = 0;
   char opdsDownloadFolder[64] = "";

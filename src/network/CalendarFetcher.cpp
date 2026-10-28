@@ -101,11 +101,22 @@ struct RadioOff {
   }
 };
 
+// Layout choice for the server: "?priority=...&count=N", joined with '&' when the URL already has a query.
+std::string requestQuery(const std::string& url) {
+  static constexpr const char* PRIORITIES[] = {"events", "events_n", "tasks_n", "tasks"};
+  const uint8_t priority = SETTINGS.calendarPriority < 4 ? SETTINGS.calendarPriority : 1;
+  char query[40];
+  snprintf(query, sizeof(query), "%cpriority=%s&count=%u", url.find('?') == std::string::npos ? '?' : '&',
+           PRIORITIES[priority], static_cast<unsigned>(SETTINGS.calendarCount));
+  return query;
+}
+
 }  // namespace
 
 bool refresh() {
   const RadioOff radioOff;
-  const std::string url = SETTINGS.calendarUrl;
+  std::string url = SETTINGS.calendarUrl;
+  if (!url.empty()) url += requestQuery(url);
   if (url.empty()) {
     LOG_ERR("CAL", "No calendar URL configured");
     return false;
