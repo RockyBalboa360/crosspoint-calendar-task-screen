@@ -1,100 +1,104 @@
-# Kalender-Ruhebildschirm für den Xteink X4 Pro
+**English** · [Deutsch](README.de.md) · [Français](README.fr.md) · [Español](README.es.md)
 
-**Inoffizieller Fork von [CrossPoint Reader](https://github.com/crosspoint-reader/crosspoint-reader) 1.6.5.**
-Der Xteink X4 Pro zeigt als Ruhebildschirm deine Tagesansicht: Wetter für zwei Orte, die
-Termine von heute aus Google Kalender und die Aufgaben von heute aus Todoist.
+# Calendar sleep screen for the Xteink X4 Pro
 
-<p align="center">
-  <img src="docs/example-calendar-screen.png" alt="Beispiel: Wetter für Berlin und Frankfurt, Termine und Aufgaben (Platzhalterdaten)" width="320"><br>
-  <em>Beispielbild mit Platzhalterdaten, so wie es auf dem Display erscheint (480x800, Graustufen)</em>
-</p>
-
-> Kein offizielles Projekt. Keine Verbindung zum CrossPoint-Reader-Projekt oder zu Xteink.
-> Getestet auf einem X4 Pro, Nutzung auf eigene Gefahr, keine Gewährleistung.
-
-## Wie es funktioniert
-1. Ein kleiner **Server** (Cloudflare Worker) holt Wetter, Termine und Aufgaben und zeichnet daraus
-   ein Bild: [worker-for-crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen).
-2. Diese **Firmware** hat dafür einen neuen Ruhebildschirm **„Calendar“** und die Einstellung
-   **„Calendar Server URL“**.
-3. Wenn das Gerät einschläft, verbindet es sich mit deinem gespeicherten WLAN, lädt das Bild von der
-   URL und zeigt es als Ruhebildschirm an. Schlägt das fehl, bleibt das zuletzt geladene Bild stehen.
+**Unofficial fork of [CrossPoint Reader](https://github.com/crosspoint-reader/crosspoint-reader) 1.6.5.**
+Your Xteink X4 Pro shows your day as its sleep screen: weather for two locations, today's events from
+Google Calendar and today's tasks from Todoist.
 
 <p align="center">
-  <img src="docs/lowbattery-screens.png" alt="Die 16 Warnbilder bei niedrigem Akku" width="640"><br>
-  <em>Die 16 Warnbilder zur Auswahl (unter jedem Bild zeigt das Gerät „Akku schwach“ und den Ladestand)</em>
+  <img src="docs/example-calendar-screen.png" alt="Example: weather for Berlin and Frankfurt, events and tasks (placeholder data)" width="320"><br>
+  <em>Example image with placeholder data, exactly as it appears on the display (480x800, grayscale)</em>
 </p>
+
+> Not an official project. No connection to the CrossPoint Reader project or to Xteink.
+> Tested on one X4 Pro, use at your own risk, no warranty.
+
+**Two parts that belong together:**
+- 🧩 **Firmware** (this repository): [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **latest release: [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)**
+- ☁️ **Image server** (Cloudflare Worker): [worker-for-crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen)
+
+## How it works
+1. A small **server** (Cloudflare Worker) fetches weather, events and tasks and draws them as an image:
+   [worker-for-crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen).
+2. This **firmware** adds a new sleep screen **"Calendar"** and the setting **"Calendar Server URL"**.
+3. When the device goes to sleep, it connects to your saved WiFi, downloads the image from that URL and shows
+   it as the sleep screen. If that fails, the last downloaded image stays.
 
 ## Installation
-1. Lade die `firmware.bin` aus den [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)
-   herunter und kopiere sie auf die SD-Karte (Hauptverzeichnis).
-2. Am Gerät: *Einstellungen → System → SD Card Firmware Update*, Datei auswählen und bestätigen.
-   Die bisherige Firmware bleibt im zweiten Programmspeicher erhalten.
-3. *Einstellungen → System → WiFi Networks*: dein WLAN speichern.
-4. *Einstellungen → Display → Calendar Server URL*: die Adresse deines Workers eintragen
-   (zum Beispiel `https://dein-worker.dein-name.workers.dev`).
-5. *Einstellungen → Display → Sleep Screen → Calendar* wählen.
+1. Download `firmware.bin` from the [latest release](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)
+   and copy it to the root of the SD card.
+2. On the device: *Settings → System → SD Card Firmware Update*, pick the file and confirm.
+   The previous firmware stays in the second app slot.
+3. *Settings → System → WiFi Networks*: save your WiFi.
+4. *Settings → Display → Calendar Server URL*: enter the address of your worker
+   (for example `https://your-worker.your-name.workers.dev`).
+5. *Settings → Display → Sleep Screen → Calendar*.
 
-Die Einrichtung des Workers (Google-Dienstkonto, Todoist-Token, Orte) steht in dessen
+Setting up the worker (Google service account, Todoist token, locations) is described in its
 [README](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen#readme).
-Link zu Worker: https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen
 
-## Gut zu wissen
-- Das Bild wird **beim Einschlafen** geladen, von Hand oder nach der eingestellten Zeit ohne
-  Bedienung. Danach bleibt es stehen, bis du das Gerät aufweckst und erneut einschlafen lässt. Ein
-  zeitgesteuertes Aufwachen gibt es nicht.
-- Liegt der Akku unter **10 %**, lädt das Gerät nichts herunter. Stattdessen erscheint ein Warnbild
-  „Akku schwach“ mit der Ladestandsanzeige. Nach dem Laden wird der Kalender beim nächsten
-  Einschlafen wieder aktualisiert.
-- Das **Warnbild bei niedrigem Akku** wählst du unter *Einstellungen → Display → Warnbild bei leerem Akku*:
-  eine Galerie mit dem schlichten Akku-Symbol und **16 Zeichnungen** (ein klassischer Akku, 3 futuristische Schaltkreis-Motive, 9 Cartoons und 3 Steampunk-Motive).
-  Mit Wischen oder den Seitentasten blätterst du, die Tasten „Wählen“ und „Abbrechen“ am unteren Rand (per Berührung) übernehmen das gezeigte Bild oder verlassen die Galerie.
-- **Platz für Termine und Aufgaben** (*Einstellungen → Display → Kalender-Priorität* und *Feste Anzahl*): *Alle Termine*
-  zeigt alle heutigen Termine, die Aufgaben bekommen den Rest. *Feste Terminzahl* zeigt genau die eingestellte Anzahl
-  Termine und gibt den Rest den Aufgaben, *Feste Aufgabenzahl* macht es umgekehrt, *Alle Aufgaben* bevorzugt die
-  Aufgaben. Die Firmware hängt die Wahl als `?priority=…&count=…` an die Server-URL, der Worker wertet sie aus
-  (neuer Worker erforderlich, siehe dessen README).
-- Das Bild muss ein BMP mit 480x800 Pixeln sein. Der Worker liefert genau das.
-- Die Adresse deines Workers ist öffentlich erreichbar. Wer sie kennt, sieht deine Termine und
-  Aufgaben. Gib sie nicht weiter.
-- Ein Update über „Check for updates“ ersetzt diese Firmware wieder durch die offizielle.
+## Events or tasks first?
+Events and tasks share the space below the weather. Under *Settings → Display* you decide who gets it first:
 
-## Was sich gegenüber CrossPoint 1.6.5 ändert
-Neu sind `src/network/CalendarFetcher.{h,cpp}` sowie kleine Anpassungen in `SleepActivity`,
-`SettingsActivity`, den Einstellungen und den Übersetzungen (Englisch und Deutsch). Alles andere ist
-unverändert. Die genaue Liste, die Bauanleitung und alle Lizenzen stehen in
-[FORK_NOTICE.md](FORK_NOTICE.md). Die Anleitung des Originals liegt in
+| *Calendar priority* | Effect |
+|---|---|
+| *All events* | all of today's events, tasks get the rest |
+| *Fixed events* | exactly N events, tasks get the rest (default, N = 3) |
+| *Fixed tasks* | exactly N tasks, events get the rest |
+| *All tasks* | all tasks, events get the rest |
+
+*Fixed count* sets N (1 to 8). If something does not fit, the section ends with "+N more" (shown as "+N weitere"
+by the German worker). An empty section only takes one line.
+
+<p align="center">
+  <img src="docs/layout-priorities.png" alt="The four layouts: all events, fixed events, fixed tasks, all tasks" width="100%"><br>
+  <em>The four layouts (left to right): all events, 2 events, 3 tasks, all tasks</em>
+</p>
+
+The firmware appends the choice to the server URL as `?priority=…&count=…`. This needs the current worker; an older
+worker ignores it and keeps its fixed layout.
+
+## Good to know
+- The image is downloaded **when the device falls asleep**, by hand or after the idle timeout. It then stays until
+  you wake the device and let it fall asleep again. There is no timed wake-up.
+- Below **10 % battery** the device downloads nothing. It shows a "Battery low" picture with the charge level instead.
+  After charging, the calendar is refreshed the next time the device goes to sleep.
+- Choose the **low battery picture** under *Settings → Display → Low battery screen*: a gallery with the plain
+  battery icon and **16 drawings** (a classic battery, 3 futuristic circuit designs, 9 cartoons and 3 steampunk
+  designs). Swipe or use the side keys to browse; the touch buttons "Choose" and "Cancel" at the bottom accept the
+  shown picture or leave the gallery.
+- The image must be a 480x800 BMP. The worker delivers exactly that.
+- The address of your worker is public. Anyone who knows it can see your events and tasks. Do not share it.
+- Using "Check for updates" replaces this firmware with the official one again.
+
+<p align="center">
+  <img src="docs/lowbattery-screens.png" alt="The 16 low battery pictures" width="640"><br>
+  <em>The 16 low battery pictures to choose from (under each picture the device shows "Battery low" and the charge level)</em>
+</p>
+
+## What changes compared to CrossPoint 1.6.5
+New are `src/network/CalendarFetcher.{h,cpp}` and small changes in `SleepActivity`, `SettingsActivity`, the
+settings and the translations (English and German). Everything else is unchanged. The exact list, build
+instructions and all licenses are in [FORK_NOTICE.md](FORK_NOTICE.md). The original manual is
 [USER_GUIDE.md](USER_GUIDE.md).
 
-## Selbst bauen
+## Build it yourself
 ```
 git clone --recurse-submodules https://github.com/RockyBalboa360/crosspoint-calendar-task-screen
 cd crosspoint-calendar-task-screen
+git checkout feature/calendar-sleep-screen
 pio run -e x4pro-gh_release
 ```
-Die fertige Datei liegt danach unter `.pio/build/x4pro-gh_release/firmware.bin`.
+The finished file is then at `.pio/build/x4pro-gh_release/firmware.bin`.
 
-## Rechtliches und Quellen
-- Basis ist **CrossPoint Reader** (MIT, Copyright (c) 2025 CrossPoint Reader organization). Die Datei
-  [LICENSE](LICENSE) ist unverändert. Meine Änderungen stehen ebenfalls unter MIT.
-- In der Firmware stecken Bibliotheken mit eigenen Lizenzen, darunter **wolfSSL (GPL-2.0 oder neuer)**
-  und arduinoWebSockets (LGPL-2.1). Die Lizenztexte liegen in
-  [third_party_licenses/](third_party_licenses/), die Quellen und Versionen in
-  [FORK_NOTICE.md](FORK_NOTICE.md).
-- „Xteink“ und „CrossPoint“ sind Namen ihrer jeweiligen Inhaber und werden hier nur beschreibend
-  verwendet.
-- Die Änderungen entstanden mit Unterstützung von Claude Code (Anthropic) und wurden vom
-  Repository-Inhaber geprüft und veröffentlicht.
+## Legal and sources
+- Based on **CrossPoint Reader** (MIT, Copyright (c) 2025 CrossPoint Reader organization). The [LICENSE](LICENSE)
+  file is unchanged. My changes are also MIT licensed.
+- The firmware contains libraries with their own licenses, among them **wolfSSL (GPL-2.0 or later)** and
+  arduinoWebSockets (LGPL-2.1). License texts are in [third_party_licenses/](third_party_licenses/), sources and
+  versions in [FORK_NOTICE.md](FORK_NOTICE.md).
+- "Xteink" and "CrossPoint" are names of their respective owners and are used here only descriptively.
+- The changes were made with the help of Claude Code (Anthropic) and reviewed and published by the repository owner.
 
----
-
-## English summary
-Unofficial fork of **CrossPoint Reader 1.6.5** for the **Xteink X4 Pro**. It adds a **Calendar** sleep
-screen: before the device sleeps it downloads a 480x800 BMP from a configurable **Calendar Server URL**
-and shows it (weather for two locations, today's Google Calendar events and Todoist tasks, rendered
-by [this Cloudflare Worker](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen)).
-Install `firmware.bin` from the [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)
-via *Settings → System → SD Card Firmware Update*, then set the URL under *Settings → Display* and choose
-*Sleep Screen → Calendar*. Not affiliated with the CrossPoint Reader organization or Xteink; see
-[FORK_NOTICE.md](FORK_NOTICE.md) for changes, sources and licenses. Original project:
-<https://github.com/crosspoint-reader/crosspoint-reader>.
+Original project: <https://github.com/crosspoint-reader/crosspoint-reader>
