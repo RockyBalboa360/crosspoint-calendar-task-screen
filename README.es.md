@@ -15,7 +15,7 @@ Calendar y las tareas de hoy de Todoist.
 > Probado en una sola X4 Pro, úsalo bajo tu propia responsabilidad, sin ninguna garantía.
 
 **Dos partes que van juntas:**
-- 🧩 **Firmware** (este repositorio): [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **última versión: [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)**
+- 🧩 **Firmware** (este repositorio): [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **última versión: [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases/latest)**
 - ☁️ **Servidor de imagen** (Cloudflare Worker): [worker-for-crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen)
 
 ## Cómo funciona
@@ -26,7 +26,7 @@ Calendar y las tareas de hoy de Todoist.
    pantalla de reposo. Si falla, se queda la última imagen descargada.
 
 ## Instalación
-1. Descarga `firmware.bin` de la [última versión](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)
+1. Descarga `firmware.bin` de la [última versión](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases/latest)
    y cópialo en la raíz de la tarjeta SD.
 2. En el dispositivo: *Settings → System → SD Card Firmware Update*, elige el archivo y confirma.
    El firmware anterior se conserva en la segunda ranura de programa.

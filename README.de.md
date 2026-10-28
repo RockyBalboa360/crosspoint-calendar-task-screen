@@ -15,7 +15,7 @@ Termine von heute aus Google Kalender und die Aufgaben von heute aus Todoist.
 > Getestet auf einem X4 Pro, Nutzung auf eigene Gefahr, keine Gewährleistung.
 
 **Zwei Teile, die zusammengehören:**
-- 🧩 **Firmware** (dieses Repository): [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **aktuelles Release: [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)**
+- 🧩 **Firmware** (dieses Repository): [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **aktuelles Release: [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases/latest)**
 - ☁️ **Bildserver** (Cloudflare Worker): [worker-for-crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen)
 
 ## Wie es funktioniert
@@ -27,7 +27,7 @@ Termine von heute aus Google Kalender und die Aufgaben von heute aus Todoist.
    URL und zeigt es als Ruhebildschirm an. Schlägt das fehl, bleibt das zuletzt geladene Bild stehen.
 
 ## Installation
-1. Lade die `firmware.bin` aus dem [aktuellen Release](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)
+1. Lade die `firmware.bin` aus dem [aktuellen Release](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases/latest)
    herunter und kopiere sie auf die SD-Karte (Hauptverzeichnis).
 2. Am Gerät: *Einstellungen → System → SD Card Firmware Update*, Datei auswählen und bestätigen.
    Die bisherige Firmware bleibt im zweiten Programmspeicher erhalten.

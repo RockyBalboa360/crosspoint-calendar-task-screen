@@ -15,7 +15,7 @@ jour de Google Agenda et les tâches du jour de Todoist.
 > Testé sur une seule X4 Pro, utilisation à vos risques, sans aucune garantie.
 
 **Deux parties qui vont ensemble :**
-- 🧩 **Firmware** (ce dépôt) : [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **dernière version : [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)**
+- 🧩 **Firmware** (ce dépôt) : [crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/tree/feature/calendar-sleep-screen), **dernière version : [Releases](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases/latest)**
 - ☁️ **Serveur d'image** (Cloudflare Worker) : [worker-for-crosspoint-calendar-task-screen](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen)
 
 ## Fonctionnement
@@ -26,7 +26,7 @@ jour de Google Agenda et les tâches du jour de Todoist.
    l'affiche comme écran de veille. En cas d'échec, la dernière image téléchargée reste affichée.
 
 ## Installation
-1. Téléchargez `firmware.bin` depuis la [dernière version](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases)
+1. Téléchargez `firmware.bin` depuis la [dernière version](https://github.com/RockyBalboa360/crosspoint-calendar-task-screen/releases/latest)
    et copiez-le à la racine de la carte SD.
 2. Sur l'appareil : *Settings → System → SD Card Firmware Update*, choisissez le fichier et confirmez.
    Le firmware précédent reste dans le second emplacement de programme.
