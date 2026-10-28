@@ -37,6 +37,7 @@ Termine von heute aus Google Kalender und die Aufgaben von heute aus Todoist.
 
 Die Einrichtung des Workers (Google-Dienstkonto, Todoist-Token, Orte) steht in dessen
 [README](https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen#readme).
+Link zu Worker: https://github.com/RockyBalboa360/worker-for-crosspoint-calendar-task-screen
 
 ## Gut zu wissen
 - Das Bild wird **beim Einschlafen** geladen, von Hand oder nach der eingestellten Zeit ohne
